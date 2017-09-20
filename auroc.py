@@ -13,8 +13,8 @@ def compute_auroc(predict, target):
 
 	cutoff = predict
 
-	TPR = []
-	FPR = []
+	TPR = [0 for x in range(n)]
+	FPR = [0 for x in range(n)]
 
 	for k in range(n):
 
@@ -36,8 +36,8 @@ def compute_auroc(predict, target):
 			FN = FN + ( (not predict_bin) &      target[j]  )
 			TN = TN + ( (not predict_bin) & (not target[j]) )
 
-		TPR.append(float(TP) / float(TP + FN))
-		FPR.append(float(FP) / float(FP + TN))
+		TPR[k] = float(TP) / float(TP + FN)
+		FPR[k] = float(FP) / float(FP + TN)
 
 	ROC = sorted(zip(FPR, TPR), reverse=True)
 
