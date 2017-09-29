@@ -3,22 +3,16 @@
 	File name : main.py
 	Author : Hyoungseok Chu (hyoungseok.chu@gmail.com)
 	Date created : 18/09/2017
-	Date last modified : 20/09/2017
+	Date last modified : 29/09/2017
 	Python version : 2.7.5
 '''
 
-from auroc import compute_auroc
+from auroc import compute_auroc, read_file
 
-inputfile = open("test_data.txt","r")
+predict_file = 'prediction_file.txt'
+label_file   = 'label_file.txt'
 
-lines = inputfile.readlines()
-
-predict = []
-target  = []
-
-for line in lines : 
-	predict.append(    line.split()[0] )
-	target.append (int(line.split()[1]))
+[predict, target] = read_file(predict_file, label_file
 
 [auc, roc] = compute_auroc(predict,target)
 print(auc)
