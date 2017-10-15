@@ -1,4 +1,38 @@
-# AUROC
-AUROC (Area Under the Receiver Operating Characteristic)
+인공지능 R&D 챌린지 평가지표 AUROC 계산을 위한 소스코드
 
-This offers a function to compute AUROC. An input file should be consist of two vectors. The first vector is a predicted one ranging from 0 to 1 of real variable. The second vector is the target variable which contains labels wether 0 or 1. Cut-off values of ROC curve are of predicted elements. Trapezoidal rule is applied to calculate the area under ROC curve.
+인공지능 R&D 챌린지 평가지표인 AUROC (Area Under Receiver Operating Characteristic)의 계산을 위한 소스코드입니다. 이 소스코드는 2차 워크샵 및 본선 경연 시 평가지표 AUROC 계산 도구로 활용됩니다. 챌린저 여러분들은 이 평가도구를 활용하여 결과 값을 계산하길 권장 드립니다. 아울러 소스코드의 오류를 검출하신 챌린저는 적극적으로 피드백 주시기 바랍니다.
+
+AUROC 소스코드는 python으로 작성됐으며, 객관성을 유지하기 위해 외부 라이브러리 사용은 최소화했습니다. AUROC를 계산하기 위한 방법은 입력 값에 따라 아래와 같이 두 가지 방법이 있습니다.
+
+1. $ python ./main.py –p prediction_file.txt –l label_file.txt
+  - 예측 값과 라벨 값을 담은 두 개의 텍스트 파일로부터 계산
+  - (예측 값) prediction_file.txt는 챌린지에 공지했다시피 문제번호,확률 값으로 작성
+    ex) 1_00001,0.5844400
+	1_00002,0.8725833
+	1_00003,...
+  - (라벨 값) label_file.txt는 문제번호,라벨 값으로 작성
+    ex) 1_00001,1
+	1_00002,0
+	1_00003,...
+
+2. $ python ./main.py –i merged_pl.txt
+  - 예측 값과 라벨 값이 하나의 텍스트 파일에 작성한 경우를 계산
+  - 문제번호, 예측 값, 라벨 값 순으로 작성
+    ex) 1_00001,0.5844400,1
+	1_00002,0.8725833,0
+	1_00003,...
+
+아래는 AUROC를 계산하기 위한 가정사항입니다.
+
+1. 예측 값과 라벨 값의 차원은 같아야 한다. (line 수가 같다)
+2. 예측 값과 라벨 값은 문제번호에 따라 오름차순으로 정렬되어야 한다.
+3. 예측 값은 0과 1 사이의 실수 값, 라벨 값은 0 또는 1로 구성된다.
+4. 가짜 뉴스의 라벨은 1, 진짜 뉴스의 라벨은 0이다.
+5. ROC 곡선을 계산하는 cut-off 값은 예측 값을 활용한다. 
+6. AUROC를 계산하는 방법은 사다리꼴 적분법(Trapezoidal Rule)을 활용했으며, 정밀도는 single precision(유효 숫자 7자리)을 사용한다.
+
+추가사항
+ROC 곡선의 plotting 함수도 제공합니다. 사용방법은 위에 공지한 바와 같고 참고할 파일은 main_plot.py입니다.
+
+위 소스코드와 관련된 문의사항은 인공지능 R&D 챌린지 홈페이지에 게시해주시기 바랍니다.
+http://airndchallenge.com 
