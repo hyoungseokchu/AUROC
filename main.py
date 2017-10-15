@@ -3,7 +3,7 @@
 	File name : main.py
 	Author : Hyoungseok Chu (hyoungseok.chu@gmail.com)
 	Date created : 18/09/2017
-	Date last modified : 29/09/2017
+	Date last modified : 15/09/2017
 	Python version : 2.7.5
 '''
 
@@ -11,6 +11,15 @@ import sys
 import argparse
 from auroc import compute_auroc, read_file, read_merged_file
 
+"""
+Arguments rule
+-p : prediction file name
+-l : label file name
+-i : merged (problem number, prediction, label order) file name
+
+ex) $ python ./main.py -p prediction_file.txt -l label_file.txt
+    $ python ./main.py -i merged_pl.txt
+"""
 argparser = argparse.ArgumentParser(description='compute AUROC to evaluate binary classification performance.')
 argparser.add_argument('-p', '--pred', default='prediction_file.txt', help='prediction result file.')
 argparser.add_argument('-l', '--label', default='label_file.txt', help='label file.')
