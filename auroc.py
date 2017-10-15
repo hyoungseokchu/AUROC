@@ -2,13 +2,29 @@
 	File name : auroc.py
 	Author : Hyoungseok Chu (hyoungseok.chu@gmail.com)
 	Date created : 18/09/2017
-	Date last modified : 29/09/2017
-	Python version : 2.7.5
+	Date last modified : 15/10/2017
+	Python version : 2.7.5 
 '''
 
+# import regular expression to parse input files 
 import re
 
 def compute_auroc(predict, target):
+	"""
+	This function is to compute AUROC. 
+	The dimension of two input parameters should be same.
+	
+	Parameters
+	----------
+	predict : Prediction vector between 0 to 1 (single precision)
+	target  : Label vector weather 0 or 1      (single precision or boolean)
+	
+	Returns
+	-------
+	ROC   : Positions of ROC curve (FPR, TPR)
+	        This is for plotting or validation purposes
+	AUROC : The value of area under ROC curve
+	"""
 	n = len(predict)
 
 	# Cutoffs are of prediction values
@@ -76,19 +92,36 @@ def read_merged_file(given_file):
 	return pred, target
 
 def read_file(predict_file, label_file):
-	# ASSUMPTION #
-	# 1. The dimension of two input file should have same dimension.
-	# 2. Both files must be sorted in increasing order by problem index.
-
-	# ex) predict_file
-	#     1_00001,0.239
-	#     1_00002,0.931
-	#     1_00003,...
-
-	# ex) label_file
-	#     1_00001,0
-	#     1_00002,1
-	#     1_00003,...
+	"""
+	This function is to read prediction and label values from file.
+	
+	Assumptions
+	-----------
+	1. The dimension of two input file should have same dimension.
+	2. Both files must be sorted in increasing order by problem index.
+	  ex) predict_file
+	      1_00001,0.239
+	      1_00002,0.931
+	      1_00003,...
+	  ex) label_file
+	      1_00001,0
+	      1_00002,1
+	      1_00003,...
+	
+	Parameters
+	----------
+	predict_file : prediction file name (string)
+	label_file   : label file name      (string)
+	
+	Returns
+	-------
+	predict : Prediction vector (single precision)
+	target  : Label vector      (single precision or boolean)
+	
+	Raises
+	------
+	Exception : The dimension of two files should be same
+	"""
 
 	splitre = re.compile("[,\s]")
 
