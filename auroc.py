@@ -72,6 +72,32 @@ def compute_auroc(predict, target):
 	return AUROC, ROC
 
 def read_merged_file(given_file):
+	"""
+	This function is to read prediction and label values from one file.
+	
+	Assumptions
+	-----------
+	1. The dimension of each vectro should have same dimension.
+	2. 'given_file' must be sorted in increasing order by problem index.
+	  ex) given_file
+	      1_00001,0.239,0
+	      1_00002,0.931,1
+	      1_00003,...
+	
+	Parameters
+	----------
+	given_file : merged (prediction and label) file name (string)
+		
+	Returns
+	-------
+	pred    : Prediction vector (single precision)
+	target  : Label vector      (single precision or boolean)
+	
+	Raises
+	------
+	Exception : The dimension of two files should be same
+	"""
+
 	splitre = re.compile('[,\s]')
 	pred = []
 	target = []
@@ -94,6 +120,7 @@ def read_merged_file(given_file):
 def read_file(predict_file, label_file):
 	"""
 	This function is to read prediction and label values from file.
+	 * If there are two different files of prediction and label, use this function.
 	
 	Assumptions
 	-----------
