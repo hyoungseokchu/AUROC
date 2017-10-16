@@ -27,6 +27,8 @@ AUROC 소스코드는 python으로 작성됐으며, 객관성을 유지하기 �
 
 **ROC 곡선의 plotting 함수도 제공합니다.** 사용방법은 위에 공지한 바와 같고 참고할 파일은 main_plot.py입니다.
 
+
+
 **위 소스코드와 관련된 문의사항은 인공지능 R&D 챌린지 홈페이지에 게시해주시기 바랍니다.**
 
 http://airndchallenge.com 
