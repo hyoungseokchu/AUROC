@@ -9,11 +9,11 @@ AUROC 소스코드는 python으로 작성됐으며, 객관성을 유지하기 �
 
 1. $ python ./main.py –p prediction_file.txt –l label_file.txt
   - 예측 값과 라벨 값을 담은 두 개의 텍스트 파일로부터 계산
-  - (예측 값) prediction_file.txt는 챌린지에 공지했다시피 문제번호,확률 값으로 작성
-  - (라벨 값) label_file.txt는 문제번호,라벨 값으로 작성
+  - (예측 값) prediction_file.txt는 챌린지에 공지했다시피 문제번호,확률 값 으로 작성
+  - (라벨 값) label_file.txt는 문제번호,라벨 값 순으로 작성
 
 2. $ python ./main.py –i merged_pl.txt
-  - 예측 값과 라벨 값을 하나의 텍스트 파일에 작성한 경우 계산
+  - 예측 값과 라벨 값을 하나의 텍스트 파일에 작성한 경우를 계산
   - 문제번호, 예측 값, 라벨 값 순으로 작성
 
 - - -
@@ -31,8 +31,11 @@ AUROC 소스코드는 python으로 작성됐으며, 객관성을 유지하기 �
 
 [추가사항]
 
-**ROC 곡선의 plotting 함수도 제공합니다.** 사용방법은 위에 공지한 바와 같고 참고할 파일은 main_plot.py입니다.
+**ROC 곡선의 plotting 함수도 제공합니다.** 사용방법은 위에 공지한 바와 같고, 참고할 파일은 main_plot.py입니다.
 
+<p align="center">
+ <img src="https://raw.githubusercontent.com/hyoungseokchu/AUROC/master/plot_example.png" width="400">
+</p>
 
 
 **위 소스코드와 관련된 문의사항은 인공지능 R&D 챌린지 홈페이지에 게시해주시기 바랍니다.**
