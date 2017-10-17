@@ -10,7 +10,7 @@ AUROC 소스코드는 python으로 작성됐으며, 객관성을 유지하기 �
 1. $ python ./main.py –p prediction_file.txt –l label_file.txt
   - 예측 값과 라벨 값을 담은 두 개의 텍스트 파일로부터 계산
   - (예측 값) prediction_file.txt는 챌린지에 공지했다시피 문제번호,확률 값 으로 작성
-  - (라벨 값) label_file.txt는 문제번호,라벨 값 순으로 작성
+  - (라벨 값) label_file.txt는 문제번호,라벨 값 순으로 작성
 
 2. $ python ./main.py –i merged_pl.txt
   - 예측 값과 라벨 값을 하나의 텍스트 파일에 작성한 경우를 계산
