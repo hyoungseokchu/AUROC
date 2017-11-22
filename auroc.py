@@ -2,7 +2,7 @@
 	File name : auroc.py
 	Author : Hyoungseok Chu (hyoungseok.chu@gmail.com)
 	Date created : 18/09/2017
-	Date last modified : 15/10/2017
+	Date last modified : 22/11/2017
 	Python version : 2.7.5 
 '''
 
@@ -30,8 +30,8 @@ def compute_auroc(predict, target):
 	# Cutoffs are of prediction values
 	cutoff = predict
 
-	TPR = [0 for x in range(n)]
-	FPR = [0 for x in range(n)]
+	TPR = [0 for x in range(n+2)]
+	FPR = [0 for x in range(n+2)]
 
 	for k in range(n):
 		predict_bin = 0
@@ -57,13 +57,18 @@ def compute_auroc(predict, target):
 		# False Positive Rate
 		FPR[k] = float(FP) / float(FP + TN)
 
+	TPR[n] = 0.0
+	FPR[n] = 0.0
+	TPR[n+1] = 1.0
+	FPR[n+1] = 1.0
+	
 	# Positions of ROC curve (FPR, TPR)
 	ROC = sorted(zip(FPR, TPR), reverse=True)
 
 	AUROC = 0
 
 	# Compute AUROC Using Trapezoidal Rule
-	for j in range(n-1):
+	for j in range(n+1):
 		h =   ROC[j][0] - ROC[j+1][0]
 		w =  (ROC[j][1] + ROC[j+1][1]) / 2.0
 
